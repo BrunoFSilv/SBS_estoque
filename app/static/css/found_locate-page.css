@@ -1,0 +1,144 @@
+/* custom-styles.css */
+
+/* Global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header styles */
+.Header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    background-color: #1e90ff;
+    color: #fff;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.Header_L img {
+    width: 10vw;
+    height: 10vw;
+    padding: 5px;
+    border-radius: 50%; /* Transforma a imagem em um círculo */
+    background-color: #efefef; /* Cor do fundo circular */
+}
+
+.Header_R {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header h2 {
+    margin: none; /* Adicione uma margem inferior menor ao h2 */
+}
+
+.header h3 {
+    margin: none; /* Aproxime o h3 do h2 */
+}
+
+/* Content styles */
+.Content {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.moviments {
+    display: flex;
+    flex-wrap: wrap;
+    border: 15px;
+    max-height: 350px; /* Defina uma altura máxima para a seção */
+    overflow-y: auto; /* Adicione uma barra de rolagem apenas quando o conteúdo exceder a altura máxima */
+}
+
+.label-equipamentos {
+    position: sticky; /* Torna o título fixo */
+    top: 0; /* Define a posição no topo da div */
+    background-color: #fff; /* Cor de fundo do título */
+    padding: 20px; /* Espaçamento interno */
+    margin-bottom: 10px; /* Espaçamento inferior */
+    font-weight: bold; /* Texto em negrito */
+}
+
+.Model_block h3 {
+    display: block;
+    color: #999;
+    margin-top: 10px;
+    font-size: 15px; /* Reduz o tamanho da fonte */
+}
+
+
+.section-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.moviments {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.moviments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaçamento entre os itens */
+}
+
+.Local_div {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    flex-basis: calc(33.33% - 20px); /* Divide igualmente o espaço em três colunas, subtraindo o espaçamento */
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.Local_name{
+    display: block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0080ff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+}
+
+
+.Local_value {
+    display: block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1e90ff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.Local_name:hover,
+.Local_value:hover {
+    background-color: #1565c0;
+}
+
+/* ... (other styles) ... */

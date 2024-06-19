@@ -1,0 +1,13 @@
+{
+    "BRUNO":{
+        "password": "5609",
+        "permissions": "['stock']",
+        "name": "Bruno Ferreira Silva"
+    },
+
+    "MARCOS":{
+        "password": "5609",
+        "permissions": "['stock']",
+        "name": "Bruno Ferreira Silva"
+    }
+}

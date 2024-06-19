@@ -1,0 +1,74 @@
+{
+    "Reparo": {
+        "_D84732460296": {
+            "marca": "TP-link",
+            "modelo": "C20",
+            "id": "D84732460296",
+            "empresa": "SBS",
+            "localizacao_atual": "Fora:Reparo",
+            "UltimaMov_Data": "28/11/2023",
+            "historico": {
+                "e6cc4d50-11db-4abb-8097-c79d0dadfdd0": {
+                    "saida": "",
+                    "entrada": "CLIENTE:2731",
+                    "motivo": "Balanco:",
+                    "data": "24/11/2023",
+                    "manuseador": "Bruno",
+                    "dataMovimentacao": "27/11/2023 14:10"
+                },
+                "89ca0cb2-c643-4f06-a716-542e399dcab8": {
+                    "saida": "CLIENTE:2731",
+                    "entrada": "Escritorio:",
+                    "motivo": "Retirada:",
+                    "data": "24/11/2023",
+                    "manuseador": "Bruno",
+                    "dataMovimentacao": "27/11/2023 14:11"
+                },
+                "23153be0-770c-42b0-a2bb-6c5cb5ca2eb3": {
+                    "saida": "Escritorio:",
+                    "entrada": "Fora:Reparo",
+                    "motivo": "Separado Para Reparo:Rede 2G n\u00e3o aparece",
+                    "data": "28/11/2023",
+                    "manuseador": "Bruno",
+                    "dataMovimentacao": "28/11/2023 08:28"
+                }
+            }
+        }
+    },
+    "Venda": {
+        "_1C3BF3F5D5AB": {
+            "marca": "TP-link",
+            "modelo": "C20",
+            "id": "1C3BF3F5D5AB",
+            "empresa": "SBS",
+            "localizacao_atual": "Fora:Venda",
+            "UltimaMov_Data": "07/2/2024",
+            "historico": {
+                "9bbf780b-fe87-4fb0-9d99-4cd7edd06e2a": {
+                    "saida": "",
+                    "entrada": "CLIENTE:4633",
+                    "motivo": "Balanco:",
+                    "data": "01/2/2024",
+                    "manuseador": "Bruno",
+                    "dataMovimentacao": "05/02/2024 16:56"
+                },
+                "69df9873-c762-4df6-88cf-af3c2720e0ab": {
+                    "saida": "CLIENTE:4633",
+                    "entrada": "Escritorio:",
+                    "motivo": "Retirada:Cancelamento por mudan\u00e7a",
+                    "data": "01/2/2024",
+                    "manuseador": "Bruno",
+                    "dataMovimentacao": "05/02/2024 16:58"
+                },
+                "e437f104-ad4d-441f-8003-8866231e6eae": {
+                    "saida": "Escritorio:",
+                    "entrada": "Fora:Venda",
+                    "motivo": "Venda:",
+                    "data": "07/2/2024",
+                    "manuseador": "Bruno",
+                    "dataMovimentacao": "07/02/2024 15:28"
+                }
+            }
+        }
+    }
+}

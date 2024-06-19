@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index-page.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.ico')}}" type="image/x-icon">    
+    <title>Página Inicial</title>
+</head>
+<body>
+    <div class="main-index">
+        <div class="card">
+            <div class="head">
+                <div class="user_info">
+                    <h1>Bem vindo {{ user }}!</h1>
+                </div>
+            </div>
+            <div class="content">
+                <form class="btns" action="/" method="post">        
+                        <button class= 'btn' class="btn-entry" name="entry">Entrada</button>
+                        <button class= 'btn' class="btn-movement" name="movement">Movimentação</button>
+                        <button class= 'btn' class="btn-search" name="search">Pesquisar</button>   
+                </form>
+            </div>
+        </div>  
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/movement-page.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.ico')}}" type="image/x-icon">    
+    <title>Entrada</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="main_movement">
+        <button id="btnexit" name="btnexit">Sair</button>
+        <div class="card">
+            <div class="Title">
+                <h1>Movimentação</h1>
+            </div>
+
+            <form class="forms" id="movimentacaoform" action="/movimentacao" method="post">
+                <div class="Card_T">
+                    <div class="auto_preencher">
+                        <div class="textfield">
+                            <label for="mac_id">Mac/ID</label>
+                            <input type="text" name="id_mac" id="id" placeholder="ID" value="{{ id_mac }}" style="--input-height: 50px;">
+                        </div>
+                        <button name="btnauto_preencher" style="--btn-size: 40px; --btn-size-mobile: 30px;">▼</button>
+                    </div>
+
+                    <div class="Card_TB">
+                        <div class="textfield">
+                            <label for="brand">Marca</label>
+                            <input type="text" name="brand" id="brand" placeholder="Marca" readonly value="{{ brand }}">
+                        </div>
+                        <div class="textfield">
+                            <label for="model">Modelo</label>
+                            <input type="text" name="model" id="model" placeholder="Modelo" readonly value="{{ model }}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="Card_M">
+                    <div class="Card_L">
+                        <h2>Saindo de: ↑</h2>
+                        <div class="textfield">
+                            <label for="exit">Saida</label>
+                            <input type="text" name="exit" id="exit" placeholder="Saída" readonly value="{{ exit }}">
+                        </div>
+                        
+                        <div class="textfield">
+                            <label for="sub-exit">Sub-Saída</label>
+                            <input type="text" name="sub-exit" id="sub-exit" placeholder="Sub-Saída" readonly value="{{ sub_exit }}">
+                        </div>
+                    </div>
+                    
+                    <div class="Card_R">
+                        <h2>Entrando em: ↓</h2>
+                        <div class="textfield">
+                            <label for="entry">Entrada</label>
+                            <input type="text" name="entry" list="options-entry" placeholder="Entrada" class="datalist-input">
+                            <datalist id="options-entry"></datalist>
+                        </div>
+                        <div class="textfield">
+                            <label for="sub-entry">Sub-Entrada</label>
+                            <input type="text" name="sub-entry" list="options-sub-entry" placeholder="Sub-Entrada" class="datalist-input">
+                            <datalist id="options-sub-entry"></datalist>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="Card_B">
+                    
+                    <div class="Card_BL">
+                        <h2>Por que?</h2>
+                        <div class="textfield">
+                            <label for="motive">Motivo</label>
+                            <input type="text" name="motive" list="options-motive" placeholder="Motivo" class="datalist-input">
+                            <datalist id="options-motive"></datalist>
+                        </div>
+                        <div class="textfield">
+                            <label for="date">Quando?</label>
+                            <input type="date" id="date" name="date" value="{{ date }}">                    
+                        </div>
+                    </div>
+                    <div class="Card_BR">
+                        <div class="textfield">
+                            <label for="obs">observação</label>
+                            <textarea name="obs" id="obs" placeholder="Observação"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn_executar" name="btn_executar">Executar</button>
+                
+                <label for="status">{{ status }}</label>
+                <label for="error">{{ error }}</label>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{url_for('static', filename='js/datalist-script.js')}}"></script>
+    <script>
+        applyDatalistBehavior('datalist-input');
+
+        // Fazer a requisição AJAX para buscar os dados do JSON
+        $.ajax({
+            url: '{{ url_for("static", filename="models/dados.json") }}',
+            dataType: 'json',
+            success: function(data) {
+                // Preencher as listas <datalist> com base nos dados do JSON
+
+                // Lista de entradas
+                var optionsEntry = $('#options-entry');
+                data.entradas.forEach(function(entrada) {
+                    optionsEntry.append('<option value="' + entrada + '">');
+                });
+
+                // Lista de subentradas
+                var optionsSubEntry = $('#options-sub-entry');
+                data.subentradas.forEach(function(subentrada) {
+                    optionsSubEntry.append('<option value="' + subentrada + '">');
+                });
+
+                // Lista de motivos
+                var optionsMotive = $('#options-motive');
+                data.motivos_m.forEach(function(motivo) {
+                    optionsMotive.append('<option value="' + motivo + '">');
+                });
+
+                // Verificar se há valores armazenados no localStorage e preenchê-los nos campos
+                var storedValues = localStorage.getItem('entradaFormValues');
+
+                if (storedValues) {
+                    var fieldValues = JSON.parse(storedValues);
+                    var inputs = $('#entradaForm input[type="text"], #entradaForm input[type="date"]');
+
+                    inputs.each(function() {
+                        var input = $(this);
+                        var name = input.attr('name');
+
+                        if (fieldValues.hasOwnProperty(name)) {
+                            input.val(fieldValues[name]);
+                        }
+                    });
+                }
+            }
+        });
+
+        // Armazenar os valores dos campos no localStorage antes de recarregar a página ou sair
+        $(window).on('beforeunload', function() {
+            var dateValue = $('#date').val();  // Obter o valor do campo de data
+
+            // Verificar se o valor é válido antes de armazená-lo no localStorage
+            if (dateValue) {
+                localStorage.setItem('entradaFormData', JSON.stringify({ date: dateValue }));
+                }
+        });
+
+        // Limpar todos os valores do localStorage ao clicar no botão "Sair"
+        $('#btnexit').click(function(event) {
+            event.preventDefault(); // Evita o comportamento padrão do botão
+
+            localStorage.removeItem('entradaFormValues');
+            $('#entradaForm input[type="text"], #entradaForm input[type="date"]').val(''); // Limpa os campos
+
+            window.location.href = '/'; // Redireciona para a página inicial
+        });
+    </script>
+</body>
+</html>

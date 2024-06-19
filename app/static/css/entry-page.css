@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.main-login {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(45deg, #bde6ff, #87CEFA);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-container {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: rgba(247, 253, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #00000056;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os elementos horizontalmente */
+}
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os elementos horizontalmente */
+    justify-content: center;
+}
+
+.card-container > h1 {
+    color: #1C1C1C;
+    font-weight: 800;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.datalist-input{
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    background: rgb(247, 253, 255);
+    color: #1C1C1C;
+    font-size: 12pt;
+    box-shadow: 0px 5px 25px -12px rgb(247, 253, 255);
+    outline: none;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+#id {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    background: rgb(247, 253, 255);
+    color: #1C1C1C;
+    font-size: 12pt;
+    box-shadow: 0px 5px 25px -12px rgb(247, 253, 255);
+    outline: none;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+label {
+    color: #1C1C1C;
+    margin-bottom: 10px;
+}
+
+input[type="date"] {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    background: rgb(247, 253, 255);
+    color: #1C1C1C;
+    font-size: 12pt;
+    box-shadow: 0px 5px 25px -12px rgb(247, 253, 255);
+    outline: none;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+button {
+    width: 90%;
+    padding: 16px 0px;
+    margin: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #e6ebed;
+    background: #1e90ff;
+    cursor: pointer;
+    box-shadow: 0px 10px 25px -12px #1c65ad;
+}
+
+/* Estilização para o botão "Sair" */
+#btnexit {
+    padding: 15px; /* Aumentamos o padding para 15px (5px de cada lado) */
+    background-color: #FF3030; /* Trocamos para o tom de vermelho */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-block;
+    width: auto;
+    position: fixed; /* Definimos a posição fixa para fixar o botão na tela */
+    top: 0; /* Posicionamos o botão no topo da tela */
+    left: 0; /* Posicionamos o botão no canto esquerdo da tela */
+    z-index: 999; /* Ajustamos o z-index para garantir que o botão esteja acima dos demais elementos */
+}
+
+#btnexit:hover {
+    background-color: #FF0000; /* Alteramos a cor de fundo para um tom mais escuro de vermelho ao passar o mouse */
+}
+
+
+#error,
+#status {
+    color: #e01a1a;
+    margin-top: 3px;
+    font-size: 8pt;
+}
+
+/* Altera a cor do status para preto */
+label[for="status"] {
+    color: #000000;
+}
+
+/* Altera a cor do error para vermelho */
+label[for="error"] {
+    color: #FF0000;
+}
+@media only screen and (max-width: 600px) {
+    .main-login {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/found_locate-page.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.ico')}}" type="image/x-icon">    
+    <title>{{ local }} : {{ sub_local }}</title>
+</head>
+<body>
+    <div class="Header">
+        <div class="Header_L">
+            <img src="{{url_for('static', filename=img)}}">
+        </div>
+        <div class="Header_R">
+            <h2>Local: {{ local }}</h2>
+            {% if SLocalValue %}
+                <h3>Sub-local: {{ sub_local }}</h3>
+            {% endif %}
+        </div>
+    </div>
+    <div class="Content">
+        <label for="equipment">Equipamentos</label>
+        <div class="moviments">
+            <form action="/procura/{{ local }}:{{ sub_local }}" method="post">
+                {% if SLocalValue == True %} <!-- se tiver sub entrada -->
+                        {% set nm = local_list[sub_local]|length %} <!-- número de itens -->
+                        {% for e, ie in local_list[sub_local].items() %} <!-- e = equipamento _mac | ie = itens de equipamento -->
+                            <button class="Local_value" name="Searsh_return" value="{{ ie['id'] }}">{{ ie['marca'] }} | {{ ie['modelo'] }} : {{ ie['id'] }}</button>
+                        {% endfor %}
+                {% else %}
+                    {% set nm = local_list|length %} <!-- número de itens -->
+                    {% if local.lower() == 'escritorio' %} <!-- se o local for igual a escritorio -->
+                        {% for e, ie in local_list.items() %} <!-- e = equipamento_Marca | ie = itens de Marca (modelos) -->
+                            <div class="brand_block">
+                                <h2>{{e}}</h2>
+                                <div class="Model_block">
+                                    {% for k, v in ie.items() %} <!-- k = modelos v = equipamentos-->
+                                    <h3>{{k}}</h3>
+                                        {% for e, ie in v.items() %}<!-- e = equipamento _mac | ie = itens de equipamento -->
+                                            <button class="Local_value" name="Searsh_return" value="{{ ie['id'] }}">{{ ie['marca'] }} | {{ ie['modelo'] }} : {{ ie['id'] }}</button>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}                       
+                    {% else %}
+                        {% for l, il in local_list.items() %} <!-- l = SubLocal | il = itens de SubLocal-->
+                        <div class="Local_div">
+                                <button class="Local_name" name="Searsh_return" value="{{ local }}:{{ l }}">{{ l }}: </button>
+                            {% for e, ie in il.items() %} <!-- e = equipamento _mac | ie = itens de equipamento -->
+                                <button class="Local_value" name="Searsh_return" value="{{ ie['id'] }}">{{ ie['marca'] }} | {{ ie['modelo'] }} : {{ ie['id'] }}</button>
+                            {% endfor %}
+                        </div>                        
+                        {% endfor %}
+                    {% endif %} 
+                {% endif %}  
+            </form>         
+        </div>
+        <label for="n de movimentações">n◦ de itens: {{ nm }}</label>
+    </div>
+</body>
+</html>

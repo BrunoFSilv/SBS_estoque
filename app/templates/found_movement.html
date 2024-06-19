@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.ico')}}" type="image/x-icon">    
+    <title>{{ mac_id }}</title>
+</head>
+<body>
+    <div class="Header">
+        <div class="Header_L">
+            
+        </div>
+        <div class="Header_R">
+                <h2>Equipamento: {{ brand }} - {{ model }}</h2>
+                <h2>ID: {{ mac_id }}</h2>
+                <h2>Localização Atual: {{ Current_locate }}</h2>
+                <h2>Ultima movimentação em: {{ UltimaMov_Data }}</h2>
+        </div>
+    </div>
+    <div class="Content">
+        <label for="Movement">Realizado em: {{ data }}</label>
+        <div class="Movement">
+            <div class="Movement_Header">
+                {% if exit == "" %}
+                    <h3>Entrou em:</h3>
+                    <p>{{ entry }}</p>
+                {% else %}
+                    <div class="Movement_Header_L">
+                        <h3>Saiu de:</h3>
+                        <p>{{ exit }}</p>
+                    </div>
+                    <p>→</p>
+                    <div class="Movement_Header_R">
+                        <h3>Para:</h3>
+                        <p>{{ entry }}</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="Movement_Content">
+                <div class="Movement_Content_L">
+                    <h3>Motivo:</h3>
+                    <p>{{ motivo }}</p>
+                    {% if obs != "" %}
+                        <h3>Observação:</h3>
+                        <p>{{ obs }}</p>
+                    {% endif %}
+                </div>
+                <div class="Movement_Content_R">
+                    <h3>Manuseador:</h3>
+                    <p>{{ manuseador }}</p>
+                    <h3>Data da execução:</h3>
+                    <p>{{ dataMovimentacao }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

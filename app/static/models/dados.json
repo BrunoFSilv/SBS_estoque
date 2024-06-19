@@ -1,0 +1,9 @@
+{
+  "empresas": ["SBS", "Mais Conexao"],
+  "entradas": ["Escritorio", "Cliente", "Carro", "Fora"],
+  "subentradas": ["Deltier", "Edivan", "Matheus", "Venda", "Lixo", "Reparo", "Outro"],
+  "motivos_e": ["Balanco", "Compra"],
+  "motivos_m": ["Instalacao", "Retirada", "Troca de Equipamento", "Troca de Endereco", "Troca de Plano", "Troca de Tecnologia", "Estoque de Veiculo", "Separado Para Reparo", "Outro", "Venda", "Nao utilizado na instalcao"],
+  "marcas": ["V-sol", "Hurakall", "Ubiquite", "TP-link", "Intelbras", "Mercusys", "Tenda", "Huawei", "D-Link"],
+  "modelos": ["V2802DAC", "DIR-615", "Ceres", "2802", "ST-1001-FL", "ONU loco", "C5v", "C20", "W4-300F", "W5-1200F", "C5", "C6", "AC12G", "ONU WIFI", "AC8", "WIFI AX2S", "RF 301K", "840", "849n", "845n", "MR30G", "MR50G","MR60X" ]
+}

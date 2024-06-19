@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/entry-page.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.ico')}}" type="image/x-icon">    
+    <title>Entrada</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="main-login">
+        <button id="btnexit" name="btnexit">Sair</button> <!-- Botão "Sair" adicionado aqui -->
+        <div class="card-container">
+            <form id="entradaForm" action="/entrada" method="post">
+                <h1>Entrada</h1> <!-- Título do card -->
+
+                <input type="text" name="company" value="{{ company }}" list="options-company" placeholder="Empresa" class="datalist-input">
+                <datalist id="options-company"></datalist>
+
+                <input type="text" name="entry" value="{{ entry }}" list="options-entry" placeholder="Entrada" class="datalist-input">
+                <datalist id="options-entry"></datalist>
+
+                <input type="text" name="sub-entry" value="{{ sub_entry }}" list="options-sub-entry" placeholder="Subentrada" class="datalist-input">
+                <datalist id="options-sub-entry"></datalist>
+
+                <input type="text" name="motive" value="{{ motive }}" list="options-motive" placeholder="Motivo" class="datalist-input">
+                <datalist id="options-motive"></datalist>
+
+                <input type="date" id="date" value="{{ date }}" name="date">
+
+                <input type="text" name="brand" value="{{ brand }}" list="options-brand" placeholder="Marca" class="datalist-input">
+                <datalist id="options-brand"></datalist>
+
+                <input type="text" name="model" value="{{ model }}" list="options-model" placeholder="Modelo" class="datalist-input">
+                <datalist id="options-model"></datalist>
+
+                <input type="text" name="id_mac" id="id" placeholder="ID">
+                
+                <div class="centered-content">
+                    <button>Entrada</button>
+                    <label for="error">{{ error }}</label>
+                    <label for="status">{{ status }}</label>
+                </div>
+                
+                <script src="{{url_for('static', filename='js/datalist-script.js')}}"></script>
+                <script>
+                    applyDatalistBehavior('datalist-input');
+
+                    // Fazer a requisição AJAX para buscar os dados do JSON
+                    $.ajax({
+                        url: '{{ url_for("static", filename="models/dados.json") }}',
+                        dataType: 'json',
+                        success: function(data) {
+                            // Preencher as listas <datalist> com base nos dados do JSON
+
+                            // Lista de empresas
+                            var optionsCompany = $('#options-company');
+                            data.empresas.forEach(function(empresa) {
+                                optionsCompany.append('<option value="' + empresa + '">');
+                            });
+
+                            // Lista de entradas
+                            var optionsEntry = $('#options-entry');
+                            data.entradas.forEach(function(entrada) {
+                                optionsEntry.append('<option value="' + entrada + '">');
+                            });
+
+                            // Lista de subentradas
+                            var optionsSubEntry = $('#options-sub-entry');
+                            data.subentradas.forEach(function(subentrada) {
+                                optionsSubEntry.append('<option value="' + subentrada + '">');
+                            });
+
+                            // Lista de motivos
+                            var optionsMotive = $('#options-motive');
+                            data.motivos_e.forEach(function(motivo) {
+                                optionsMotive.append('<option value="' + motivo + '">');
+                            });
+
+                            // Lista de marcas
+                            var optionsBrand = $('#options-brand');
+                            data.marcas.forEach(function(marca) {
+                                optionsBrand.append('<option value="' + marca + '">');
+                            });
+
+                            // Lista de modelos
+                            var optionsModel = $('#options-model');
+                            data.modelos.forEach(function(modelo) {
+                                optionsModel.append('<option value="' + modelo + '">');
+                            });
+
+                        }
+                    });
+
+                    // Limpar todos os valores do localStorage ao clicar no botão "Sair"
+                    $('#btnexit').click(function(event) {
+                        event.preventDefault(); // Evita o comportamento padrão do botão
+
+                        localStorage.removeItem('entradaFormValues');
+                        $('#entradaForm input[type="text"], #entradaForm input[type="date"]').val(''); // Limpa os campos
+
+                        window.location.href = '/'; // Redireciona para a página inicial
+                    });
+                </script>       
+            </form>
+        </div>
+    </div>
+</body>
+</html>

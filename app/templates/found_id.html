@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.ico')}}" type="image/x-icon">    
+    <title>{{ movement_id }}</title>
+</head>
+<body>
+    <div class="Header">
+        <div class="Header_L">
+            
+        </div>
+        <div class="Header_R">
+                <h2>Equipamento: {{ brand }} - {{ model }}</h2>
+                <h2>ID: {{ mac_id }}</h2>
+                <h2>Localização Atual: {{ Current_locate }}</h2>
+                <h2>Empresa: {{ company }}</h2>
+        </div>
+    </div>
+    <div class="Content">
+        <label for="historic">Histórico</label>
+        <form action="/procura/{{ movement_id }}" method="post">
+            <div class="moviments">
+                {% set nm = movimentacao|length %}
+                {% for key, i in movimentacao.items() %}
+                    <label >{{ i['data'] }}</label>
+                    <button class="moviments_value" name="movimentacao" value="{{ key }}">{{ i['saida'] }} → {{ i['entrada'] }}</button>
+                {% endfor %}            
+            </div>
+        </form>
+        <label for="n de movimentações">n◦ de movimentações: {{ nm }}</label>
+    </div>
+</body>
+</html>

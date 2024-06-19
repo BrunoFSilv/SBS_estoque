@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.ico')}}" type="image/x-icon">    
+    <title>Procura</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="btnexit" name="btnexit">Sair</button>
+    <form id="procuraForm" action="/procura" method="post">
+        <div class="Searsh_main">
+            <div class="Title">
+                <h1>Procurar</h1>
+            </div>
+            <div class="Card_T">
+                <div class="textfield">
+                    <label for="mac_id">Procura por ID/Mac</label>
+                    <input type="text" name="mac_id" id="mac_id" placeholder="ID/Mac">
+                </div>
+                <button name="Searsh_ID">&#128269;</button>
+            </div>
+            <div class="Card_B">
+                <label for="Procura_lista">Procura por lista</label>
+                <div class="inputs_ProcuraLista">
+                    <input type="text" name="locate" list="options-locate" placeholder="Local" class="datalist-input">
+                    <datalist id="options-locate"></datalist>
+                    <input type="text" name="sub-locate" list="options-sub-locate" placeholder="Sub-Local" class="datalist-input">
+                    <datalist id="options-sub-locate"></datalist>
+                    <button name="Searsh_ProcuraLista">&#128269;</button>
+                </div>
+            </div>
+            <label for="error">{{ error }}</label>
+            <script src="{{url_for('static', filename='js/datalist-script.js')}}"></script>
+            <script>
+                applyDatalistBehavior('datalist-input');
+    
+                // Fazer a requisição AJAX para buscar os dados do JSON
+                $.ajax({
+                    url: '{{ url_for("static", filename="models/dados.json") }}',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Preencher as listas <datalist> com base nos dados do JSON
+    
+                        // Lista de entradas
+                        var optionsEntry = $('#options-locate');
+                        data.entradas.forEach(function(entrada) {
+                            optionsEntry.append('<option value="' + entrada + '">');
+                        });
+    
+                        // Lista de subentradas
+                        var optionsSubEntry = $('#options-sub-locate');
+                        data.subentradas.forEach(function(subentrada) {
+                            optionsSubEntry.append('<option value="' + subentrada + '">');
+                        });
+    
+                    }
+                });
+    
+                // Limpar todos os valores do localStorage ao clicar no botão "Sair"
+                $('#btnexit').click(function(event) {
+                    event.preventDefault(); // Evita o comportamento padrão do botão
+    
+                    localStorage.removeItem('entradaFormValues');
+                    $('#entradaForm input[type="text"], #entradaForm input[type="date"]').val(''); // Limpa os campos
+    
+                    window.location.href = '/'; // Redireciona para a página inicial
+                });
+            </script>
+        </div>
+    </form>
+</body>
+</html>
